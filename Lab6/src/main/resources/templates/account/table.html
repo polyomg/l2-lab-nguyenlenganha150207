@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<table border="1" style="width:100%">
+    <tr>
+        <th>Username</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Photo</th>
+        <th>Activated</th>
+        <th>Admin</th>
+        <th>Action</th>
+    </tr>
+    <th:block th:each="item: ${items}">
+        <tr>
+            <td th:text="${item.username}"></td>
+            <td th:text="${item.fullname}"></td>
+            <td th:text="${item.email}"></td>
+            <td th:text="${item.photo}"></td>
+            <td>
+                <span th:if="${item.activated}">✓</span>
+                <span th:unless="${item.activated}">✗</span>
+            </td>
+            <td>
+                <span th:if="${item.admin}">✓</span>
+                <span th:unless="${item.admin}">✗</span>
+            </td>
+            <td>
+                <a class="edit-link" th:href="@{|/account/edit/${item.username}|}">Edit</a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
