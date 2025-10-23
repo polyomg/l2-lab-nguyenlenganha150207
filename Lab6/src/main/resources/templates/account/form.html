@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<form action="/account/index" th:object="${item}">
+    <!-- Thêm hidden field này -->
+    <input type="hidden" name="originalUsername" th:value="${item.username}"/>
+
+    <input th:field="*{username}" placeholder="Username?"/><br>
+    <input type="password" th:field="*{password}" placeholder="Password?"/><br>
+    <input th:field="*{fullname}" placeholder="Full Name?"/><br>
+    <input th:field="*{email}" placeholder="Email?"/><br>
+    <input th:field="*{photo}" placeholder="Photo?"/><br>
+    <label>
+        <input type="checkbox" th:field="*{activated}"/> Activated
+    </label>
+    <label>
+        <input type="checkbox" th:field="*{admin}"/> Admin
+    </label>
+    <hr>
+    <button formaction="/account/create">Create</button>
+    <button formaction="/account/update">Update</button>
+    <a th:href="@{|/account/delete/${item.username}|}">Delete</a>
+    <a href="/account/index">Reset</a>
+</form>
+</body>
+</html>
